@@ -5,7 +5,7 @@ import {HttpClientModule} from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrandComponent } from './components/brand/brand.component';
-import { CarComponent } from './components/car/car/car.component';
+import { CarComponent } from './components/car/car.component';
 import { CarImageComponent } from './components/car-image/car-image.component';
 import { ColorComponent } from './components/color/color.component';
 import { CustomerComponent } from './components/customer/customer.component';
