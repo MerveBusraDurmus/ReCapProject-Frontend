@@ -1,4 +1,20 @@
+<div class="accordion" id="accordionGearName"></div>
+<div class="accordion-item">
+    <h2 class="accordion-header" id="headingFive">
+      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="true" aria-controls="collapseFive">
+        Vites
+      </button>
+    </h2>
+    <div id="collapseFive" class="accordion-collapse collapse " aria-labelledby="headingFive" data-bs-parent="#accordionExample">
+      <div class="accordion-body">
+        <ul class="list-group">
+            <li (click)="setCurrentGear(gear)" 
+            routerLink="/cars/gear/{{gear.id}}"
+            *ngFor="let gear of gears"
+            [class]="getCurrentGearClass(gear)">{{gear.gearType}}</li>
+            
+        </ul>
+      </div>
+    </div>
+</div>
 
-<ul *ngFor="let gear of gears" class="list-group">
-    <li class="list-group-item">{{gear.gearType}}</li>
-</ul>

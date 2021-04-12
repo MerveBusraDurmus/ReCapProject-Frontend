@@ -11,6 +11,7 @@ import { FuelService } from 'src/app/services/fuel.service';
 export class FuelComponent implements OnInit {
 
   fuels:Fuel[]=[];
+  currentFuel:Fuel;
   constructor(private fuelService:FuelService, private activatedRoute:ActivatedRoute) { }
 
   ngOnInit(): void {
@@ -36,5 +37,19 @@ export class FuelComponent implements OnInit {
     this.fuelService.getFuelById(fuelId).subscribe(response=>{
       this.fuels=response.data
     })
+  }
+
+  setCurrentFuel(fuel:Fuel){
+    this.currentFuel=fuel;
+  }
+
+
+  getCurrentFuelClass(fuel:Fuel){
+    if(fuel==this.currentFuel){
+      return "list-group-item active"
+    }
+    else{
+      return "list-group-item"
+    }
   }
 }

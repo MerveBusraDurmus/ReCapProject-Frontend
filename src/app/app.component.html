@@ -1,9 +1,15 @@
-<div class="container">
+<body cla>
+  <div class="container">
     <app-navi></app-navi>
     <div class="row">
       <div class="col-md-3">
+        <ul class="list-group">
+          <li routerLink="/cardetails" class="list-group-item">Tümü</li>
+        </ul>
         <app-brand></app-brand>
         <app-color></app-color>
+        <app-fuel></app-fuel>
+        <app-gear></app-gear>
       </div>
       <div class="col-md-9">
         <router-outlet></router-outlet>
@@ -11,5 +17,6 @@
       
     </div>
   </div>
+</body>
   
   

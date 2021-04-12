@@ -11,6 +11,7 @@ import { GearService } from 'src/app/services/gear.service';
 export class GearComponent implements OnInit {
 
   gears:Gear[]=[];
+  currentGear:Gear;
   constructor(private gearService:GearService, private activatedRoute:ActivatedRoute) { }
 
   ngOnInit(): void {
@@ -36,5 +37,19 @@ export class GearComponent implements OnInit {
     this.gearService.getGearById(gearId).subscribe(response=>{
       this.gears=response.data
     })
+  }
+
+  setCurrentGear(gear:Gear){
+    this.currentGear=gear;
+  }
+
+
+  getCurrentGearClass(gear:Gear){
+    if(gear==this.currentGear){
+      return "list-group-item active"
+    }
+    else{
+      return "list-group-item"
+    }
   }
 }

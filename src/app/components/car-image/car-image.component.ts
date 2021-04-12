@@ -18,7 +18,7 @@ export class CarImageComponent implements OnInit {
       if(params["carId"]){
         this.getCarImagesByCarId(params["carId"])
       }
-      if(params["carImageId"]){
+      else if(params["carImageId"]){
         this.getCarImageByCarImageId(params["carImageId"])
       }
       else{
