@@ -1,1 +1,27 @@
-<p>color works!</p>
+<!-- <ul class="list-group">
+    <li (click)="setCurrentColor(color)" 
+    routerLink="/cars/color/{{color.id}}"
+    *ngFor="let color of colors"
+    [class]="getCurrentColorClass(color)">{{color.colorName}}</li>
+    
+</ul> -->
+
+<div class="accordion" id="accordionColorName"></div>
+<div class="accordion-item">
+    <h2 class="accordion-header" id="headingThree">
+      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
+        Renk
+      </button>
+    </h2>
+    <div id="collapseThree" class="accordion-collapse collapse show" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+      <div class="accordion-body">
+        <ul class="list-group">
+            <li (click)="setCurrentColor(color)" 
+            routerLink="/cars/color/{{color.id}}"
+            *ngFor="let color of colors"
+            [class]="getCurrentColorClass(color)">{{color.colorName}}</li>
+            
+        </ul>
+      </div>
+    </div>
+</div>

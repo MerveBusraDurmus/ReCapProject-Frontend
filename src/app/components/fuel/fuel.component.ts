@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Fuel } from 'src/app/models/fuel';
 import { FuelService } from 'src/app/services/fuel.service';
 
@@ -10,16 +11,30 @@ import { FuelService } from 'src/app/services/fuel.service';
 export class FuelComponent implements OnInit {
 
   fuels:Fuel[]=[];
-  constructor(private fuelService:FuelService) { }
+  constructor(private fuelService:FuelService, private activatedRoute:ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.getFuels();
+    this.activatedRoute.params.subscribe(params=>{
+      if(params["fuelId"]){
+        this.getFuelById(params["fuelId"])
+      }
+      else{
+        this.getFuels();
+      }
+    })
+    
   }
 
   getFuels(){
     this.fuelService.getFuels().subscribe(response=>{
       this.fuels=response.data
 
+    })
+  }
+
+  getFuelById(fuelId:number){
+    this.fuelService.getFuelById(fuelId).subscribe(response=>{
+      this.fuels=response.data
     })
   }
 }

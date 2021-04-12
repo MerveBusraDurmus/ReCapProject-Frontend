@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Rental } from 'src/app/models/rental';
 import { RentalService } from 'src/app/services/rental.service';
 
@@ -10,14 +11,27 @@ import { RentalService } from 'src/app/services/rental.service';
 export class RentalComponent implements OnInit {
 
   rentals:Rental[]=[];
-  constructor(private rentalService:RentalService) { }
+  constructor(private rentalService:RentalService, private activatedRoute:ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.getRentals();
+    this.activatedRoute.params.subscribe(params=>{
+      if(params["rentalId"]){
+        this.getRentalById(params["rentalId"])
+      }
+      else{
+        this.getRentals();
+      }
+    })
   }
 
     getRentals(){
       this.rentalService.getRentals().subscribe(response=>{
+        this.rentals=response.data
+      })
+    }
+
+    getRentalById(rentalId:number){
+      this.rentalService.getRentalById(rentalId).subscribe(response=>{
         this.rentals=response.data
       })
     }

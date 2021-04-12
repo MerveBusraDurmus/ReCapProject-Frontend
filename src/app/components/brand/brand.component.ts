@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Brand } from 'src/app/models/brand';
 import { BrandService } from 'src/app/services/brand.service';
 
@@ -10,10 +11,19 @@ import { BrandService } from 'src/app/services/brand.service';
 export class BrandComponent implements OnInit {
 
   brands:Brand[]=[];
-  constructor(private brandService:BrandService) { }
+  currentBrand:Brand;
+  constructor(private brandService:BrandService, private activatedRoute:ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.getBrands();
+    this.activatedRoute.params.subscribe(params=>{
+      if(params["brandId"]){
+        this.getBrandById(params["brandId"])
+      }
+      else{
+        this.getBrands();
+      }
+    })
+    
   }
 
   getBrands(){
@@ -21,5 +31,27 @@ export class BrandComponent implements OnInit {
       this.brands=response.data
       
     })
+  }
+
+  getBrandById(brandId:number){
+    this.brandService.getBrandById(brandId).subscribe(response=>{
+      this.brands=response.data
+      
+    })
+  }
+
+
+  setCurrentBrand(brand:Brand){
+    this.currentBrand=brand;
+  }
+
+
+  getCurrentBrandClass(brand:Brand){
+    if(brand==this.currentBrand){
+      return "list-group-item active"
+    }
+    else{
+      return "list-group-item"
+    }
   }
 }
